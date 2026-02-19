@@ -34,6 +34,7 @@ export const metadata: Metadata = {
   },
 };
 
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID!;
 
 // kantumruy_font 
 const kantumruy_font = localfont({
@@ -63,18 +64,21 @@ export default function RootLayout({
 <html lang="en" className={`${kantumruy_font.variable} ${lexend_font.variable}`}>
   <body>
     {/* Google Analytics (place near top) */}
-    <Script
-      src="https://www.googletagmanager.com/gtag/js?id=G-0LW4L89Y5J"
-      strategy="afterInteractive"
-    />
-    <Script id="google-analytics" strategy="afterInteractive">
-      {`
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-0LW4L89Y5J');
-      `}
-        </Script>
+<Script
+  src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+  strategy="afterInteractive"
+/>
+
+<Script id="google-analytics" strategy="afterInteractive">
+  {`
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '${GA_ID}');
+  `}
+</Script>
+
+
         <GoogleAnalytics />
         
     <NavbarComponent />
