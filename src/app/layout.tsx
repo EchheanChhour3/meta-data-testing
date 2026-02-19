@@ -8,6 +8,7 @@ import React from "react";
 
 import { NavbarComponent } from "@/components/(landing)/nav/NavbarComponent";
 import Script from "next/script";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 export const metadata: Metadata = {
   // title: "Car Selling",
   // description: "This is homepage of car selling",
@@ -59,28 +60,29 @@ export default function RootLayout({
   modal: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${kantumruy_font.variable} ${lexend_font.variable}`}>
-      <body
-      >
-        <NavbarComponent/>
+<html lang="en" className={`${kantumruy_font.variable} ${lexend_font.variable}`}>
+  <body>
+    {/* Google Analytics (place near top) */}
+    <Script
+      src="https://www.googletagmanager.com/gtag/js?id=G-0LW4L89Y5J"
+      strategy="afterInteractive"
+    />
+    <Script id="google-analytics" strategy="afterInteractive">
+      {`
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-0LW4L89Y5J');
+      `}
+        </Script>
+        <GoogleAnalytics />
         
-        {children}
-        {modal}
-        {/* <h1 lang="km">សួស្តី</h1> */}
-        <FooterComponent />
- <Script
-        src="https://www.googletagmanager.com/gtag/js?id=G-0LW4L89Y5J"
-        strategy="afterInteractive"
-      />
-      <Script id="google-analytics" strategy="afterInteractive">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-0LW4L89Y5J');
-        `}
-      </Script>
-      </body>
-    </html>
+    <NavbarComponent />
+    {children}
+    {modal}
+    <FooterComponent />
+  </body>
+</html>
+
   );
 }
