@@ -7,7 +7,7 @@ import { FooterComponent } from "@/components/(landing)/nav/FooterComponent";
 import React from "react";
 
 import { NavbarComponent } from "@/components/(landing)/nav/NavbarComponent";
-
+import Script from "next/script";
 export const metadata: Metadata = {
   // title: "Car Selling",
   // description: "This is homepage of car selling",
@@ -67,7 +67,19 @@ export default function RootLayout({
         {children}
         {modal}
         {/* <h1 lang="km">សួស្តី</h1> */}
-        <FooterComponent/>
+        <FooterComponent />
+ <Script
+        src="https://www.googletagmanager.com/gtag/js?id=G-0LW4L89Y5J"
+        strategy="afterInteractive"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-0LW4L89Y5J');
+        `}
+      </Script>
       </body>
     </html>
   );
